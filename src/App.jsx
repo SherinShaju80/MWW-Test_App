@@ -39,7 +39,7 @@ export default function App() {
           apiKey: process.env.SHOPIFY_API_KEY,
           shopOrigin: shopOrigin,
           host: new URL(location).searchParams.get("host"),
-          // forceRedirect: true,
+          forceRedirect: true,
         }}
       >
         <MyProvider>
