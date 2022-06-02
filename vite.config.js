@@ -9,10 +9,12 @@ export default {
     "process.env.SHOPIFY_API_KEY": JSON.stringify(process.env.SHOPIFY_API_KEY),
   },
   server: {
+    port: 3000,
+    strictPort: true,
     hmr: {
-      protocol: "ws",
-      port: 3000,
+      port: 9000,
     },
   },
+  base: "./",
   plugins: [react()],
 };
