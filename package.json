@@ -2,16 +2,16 @@
   "name": "shopify-app-node",
   "private": true,
   "scripts": {
-    "prod": "yarn run clean && yarn run build && NODE_ENV=production yarn run go",
-    "dev": "NODE_ENV=development yarn run go",
-    "go": "node ./bin/www",
-    "build": "NODE_ENV=production webpack --config ./config/webpack.config.js --progress --profile --colors",
-    "clean": "rm -rf ./assets && mkdir ./assets",
-    "pretty": "prettier --single-quote --trailing-comma es5 --write {client,bin,config,server}{/*,/**/*}.js",
-    "precommit": "yarn run pretty",
-    "start": "yarn run clean && yarn run build && NODE_ENV=production yarn run go",
     "heroku-prebuild": "yarn install --production=false",
-    "postinstall": "NODE_ENV=production webpack --config ./config/webpack.config.js"
+    "build": "npm run build:client --production=false",
+    "build:client": "vite build --outDir dist/client",
+    "debug": "node --inspect-brk server/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch ./server",
+    "prepare": "husky install --production=false",
+    "preserve": "npm run build --production=false",
+    "serve": "cross-env NODE_ENV=production node server/index.js",
+    "start": "npm run serve --production=false",
+    "test": "vitest --reporter=verbose"
   },
   "type": "module",
   "engines": {
