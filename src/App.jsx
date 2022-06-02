@@ -24,13 +24,12 @@ export default function App() {
       {
         type: "mww-iframe-data",
         shop: new URL(location).searchParams.get("shop"),
-        session: new URL(location)?.searchParams.get("session"),
+        session: new URL(location)?.searchParams.get("sessionToken"),
       },
       "*"
     );
   };
   const shopOrigin = Cookies.get("shopOrigin");
-
   return (
     <PolarisProvider i18n={translations}>
       <AppBridgeProvider

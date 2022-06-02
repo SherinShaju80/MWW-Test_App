@@ -71,7 +71,7 @@ export default function applyAuthMiddleware(app) {
 
       // Redirect to app with shop parameter upon auth
       res.redirect(
-        `/?shop=${session.shop}&host=${host}&session=${session.accessToken}&shop=${session.shop}`
+        `/?shop=${session.shop}&host=${host}&sessionToken=${session?.accessToken}`
       );
     } catch (e) {
       switch (true) {
