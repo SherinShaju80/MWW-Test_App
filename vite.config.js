@@ -5,14 +5,13 @@ import "dotenv/config";
  * @type {import('vite').UserConfig}
  */
 export default {
-  devServer: {
-    proxy: "https://test-mww.herokuapp.com",
-  },
   define: {
     "process.env.SHOPIFY_API_KEY": JSON.stringify(process.env.SHOPIFY_API_KEY),
   },
   server: {
-    hmr: false,
+    hmr: {
+      clientPort: 8080,
+    },
   },
   plugins: [react()],
 };
