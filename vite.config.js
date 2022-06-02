@@ -11,10 +11,6 @@ export default {
   },
   plugins: [react()],
   server: {
-    port: 8080,
-    host: "0.0.0.0",
-    hmr: {
-      clientPort: 80,
-    },
+    hmr: false,
   },
 };
