@@ -8,13 +8,10 @@ export default {
   define: {
     "process.env.SHOPIFY_API_KEY": JSON.stringify(process.env.SHOPIFY_API_KEY),
   },
+  plugins: [react()],
   server: {
-    port: 3000,
-    strictPort: true,
     hmr: {
-      port: 9000,
+      port: 443,
     },
   },
-  base: "./",
-  plugins: [react()],
 };
