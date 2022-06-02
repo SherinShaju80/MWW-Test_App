@@ -17,17 +17,41 @@ import "@shopify/polaris/build/esm/styles.css";
 import { HomePage } from "./components/HomePage";
 
 export default function App() {
+  const handleIframeLoad = (e) => {
+    e.preventDefault();
+    document.getElementById("mww-iframe").contentWindow.postMessage(
+      {
+        type: "mww-iframe-data",
+        shop: new URL(location).searchParams.get("shop"),
+        code: new URL(location).searchParams.get("code"),
+        session: new URL(location)?.searchParams.get("session"),
+      },
+      "*"
+    );
+  };
+
   return (
     <PolarisProvider i18n={translations}>
       <AppBridgeProvider
         config={{
           apiKey: process.env.SHOPIFY_API_KEY,
+          shopOrigin: new URL(location).searchParams.get("shop"),
           host: new URL(location).searchParams.get("host"),
           forceRedirect: true,
         }}
       >
         <MyProvider>
-          <HomePage />
+          <iframe
+            title="Printify: Print on Demand"
+            src="https://mwwdev.fingent.net/"
+            name="mww-shop"
+            context="Main"
+            width="100%"
+            height="600"
+            frameBorder="0"
+            onLoad={handleIframeLoad}
+            id="mww-iframe"
+          ></iframe>
         </MyProvider>
       </AppBridgeProvider>
     </PolarisProvider>
