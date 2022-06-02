@@ -12,11 +12,12 @@ export default {
   plugins: [react()],
   clearScreen: false,
   server: {
-    host: "0.0.0.0",
     port: 3000,
-    strictPort: true,
+    https: true,
     hmr: {
-      port: 443,
+      host: "https://test-mww.herokuapp.com",
+      port: 3001,
+      protocol: "wss",
     },
   },
 };
