@@ -10,7 +10,6 @@
     "preserve": "npm run build",
     "serve": "cross-env NODE_ENV=production node server/index.js",
     "start": "npm run serve",
-    "heroku-prebuild": "yarn install --production=false",
     "test": "vitest --reporter=verbose"
   },
   "type": "module",
