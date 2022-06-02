@@ -18,18 +18,18 @@ import Cookies from "js-cookie";
 import { HomePage } from "./components/HomePage";
 
 export default function App() {
-  const handleIframeLoad = (e) => {
-    e.preventDefault();
-    document.getElementById("mww-iframe").contentWindow.postMessage(
-      {
-        type: "mww-iframe-data",
-        shop: new URL(location).searchParams.get("shop"),
-        code: new URL(location).searchParams.get("code"),
-        session: new URL(location)?.searchParams.get("session"),
-      },
-      "*"
-    );
-  };
+  // const handleIframeLoad = (e) => {
+  //   e.preventDefault();
+  //   document.getElementById("mww-iframe").contentWindow.postMessage(
+  //     {
+  //       type: "mww-iframe-data",
+  //       shop: new URL(location).searchParams.get("shop"),
+  //       code: new URL(location).searchParams.get("code"),
+  //       session: new URL(location)?.searchParams.get("session"),
+  //     },
+  //     "*"
+  //   );
+  // };
   const shopOrigin = Cookies.get("shopOrigin");
 
   return (
@@ -43,7 +43,8 @@ export default function App() {
         }}
       >
         <MyProvider>
-          <iframe
+          <p>hiii honney</p>
+          {/* <iframe
             title="Printify: Print on Demand"
             src="https://mwwdev.fingent.net/"
             name="mww-shop"
@@ -53,7 +54,7 @@ export default function App() {
             frameBorder="0"
             onLoad={handleIframeLoad}
             id="mww-iframe"
-          ></iframe>
+          ></iframe> */}
         </MyProvider>
       </AppBridgeProvider>
     </PolarisProvider>
