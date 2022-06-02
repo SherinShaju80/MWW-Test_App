@@ -24,7 +24,6 @@ export default function App() {
       {
         type: "mww-iframe-data",
         shop: new URL(location).searchParams.get("shop"),
-        code: new URL(location).searchParams.get("code"),
         session: new URL(location)?.searchParams.get("session"),
       },
       "*"

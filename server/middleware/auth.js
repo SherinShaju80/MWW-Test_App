@@ -70,7 +70,9 @@ export default function applyAuthMiddleware(app) {
       }
 
       // Redirect to app with shop parameter upon auth
-      res.redirect(`/?shop=${session.shop}&host=${host}`);
+      res.redirect(
+        `/?shop=${session.shop}&host=${host}&session=${session.accessToken}&shop=${session.shop}`
+      );
     } catch (e) {
       switch (true) {
         case e instanceof Shopify.Errors.InvalidOAuthError:
