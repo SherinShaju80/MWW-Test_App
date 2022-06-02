@@ -13,6 +13,7 @@ import { Redirect } from "@shopify/app-bridge/actions";
 import { AppProvider as PolarisProvider } from "@shopify/polaris";
 import translations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
+import Cookies from "js-cookie";
 
 import { HomePage } from "./components/HomePage";
 
@@ -29,13 +30,14 @@ export default function App() {
       "*"
     );
   };
+  const shopOrigin = Cookies.get("shopOrigin");
 
   return (
     <PolarisProvider i18n={translations}>
       <AppBridgeProvider
         config={{
           apiKey: process.env.SHOPIFY_API_KEY,
-          shopOrigin: new URL(location).searchParams.get("shop"),
+          shopOrigin: shopOrigin,
           host: new URL(location).searchParams.get("host"),
           forceRedirect: true,
         }}
