@@ -47,7 +47,7 @@ export default function App() {
             name="mww-shop"
             context="Main"
             width="100%"
-            height="600"
+            height="550"
             frameBorder="0"
             onLoad={handleIframeLoad}
             id="mww-iframe"
