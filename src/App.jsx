@@ -4,6 +4,7 @@ import {
   HttpLink,
   InMemoryCache,
 } from "@apollo/client";
+import { useEffect, useState, useCallback } from "react";
 import {
   Provider as AppBridgeProvider,
   useAppBridge,
@@ -16,6 +17,12 @@ import "@shopify/polaris/build/esm/styles.css";
 import Cookies from "js-cookie";
 
 export default function App() {
+  const [productCount, setProductCount] = useState(0);
+  console.log(
+    "🚀 ~ file: App.jsx ~ line 21 ~ App ~ productCount",
+    productCount
+  );
+
   const handleIframeLoad = (e) => {
     e.preventDefault();
     document.getElementById("mww-iframe").contentWindow.postMessage(
@@ -28,6 +35,17 @@ export default function App() {
     );
   };
   const shopOrigin = Cookies.get("shopOrigin");
+
+  const updateProductCount = useCallback(async () => {
+    const res = await fetch("/access-token").then((res) => res.json());
+    console.log("🚀 ~ file: App.jsx ~ line 41 ~ updateProductCount ~ res", res);
+    setProductCount(res);
+  }, []);
+
+  useEffect(() => {
+    updateProductCount();
+  }, [updateProductCount]);
+
   return (
     <PolarisProvider i18n={translations}>
       <AppBridgeProvider

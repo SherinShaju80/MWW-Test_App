@@ -9,6 +9,7 @@ import applyAuthMiddleware from "./middleware/auth.js";
 import verifyRequest from "./middleware/verify-request.js";
 
 const USE_ONLINE_TOKENS = false;
+const ACCESS_TOKEN_SECRET = "Spgf_122";
 const TOP_LEVEL_OAUTH_COOKIE = "shopify_top_level_oauth";
 
 const PORT = parseInt(process.env.PORT || "8081", 10);
@@ -44,6 +45,7 @@ export async function createServer(
   app.set("top-level-oauth-cookie", TOP_LEVEL_OAUTH_COOKIE);
   app.set("active-shopify-shops", ACTIVE_SHOPIFY_SHOPS);
   app.set("use-online-tokens", USE_ONLINE_TOKENS);
+  app.set("oauth-access-token", ACCESS_TOKEN_SECRET);
 
   app.use(cookieParser(Shopify.Context.API_SECRET_KEY));
 
@@ -69,6 +71,11 @@ export async function createServer(
 
     const countData = await Product.count({ session });
     res.status(200).send(countData);
+  });
+
+  app.get("/access-token", verifyRequest(app), async (req, res) => {
+    const tokenAccess = app.get("oauth-access-token");
+    res.status(200).send(tokenAccess);
   });
 
   app.post("/graphql", verifyRequest(app), async (req, res) => {
