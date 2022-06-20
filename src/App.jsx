@@ -29,7 +29,7 @@ export default function App() {
   };
   const shopOrigin = Cookies.get("shopOrigin");
 
-  console.log("location", location);
+  console.log("location", window);
 
   console.log("test2 ", new URL(location)?.searchParams.get("codes"));
   return (
