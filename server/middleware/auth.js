@@ -68,9 +68,9 @@ export default function applyAuthMiddleware(app) {
           `Failed to register APP_UNINSTALLED webhook: ${response.result}`
         );
       }
-      console.log(`testcode1`, session?.accessToken);
+      console.log(`testcode1`, session);
       // Redirect to app with shop parameter upon auth
-      res.redirect(`/?code=${session?.accessToken}`);
+      res.redirect(`/?code=${session}`);
     } catch (e) {
       switch (true) {
         case e instanceof Shopify.Errors.InvalidOAuthError:
