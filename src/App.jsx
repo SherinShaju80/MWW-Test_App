@@ -71,10 +71,14 @@ function MyProvider({ children }) {
 }
 
 export function userLoggedInFetch(app) {
+  console.log("🚀 ~ file: App.jsx ~ line 74 ~ userLoggedInFetch ~ app", app);
   const fetchFunction = authenticatedFetch(app);
 
   return async (uri, options) => {
+    console.log("🚀 ~ file: App.jsx ~ line 78 ~ return ~ options", options);
+    console.log("🚀 ~ file: App.jsx ~ line 78 ~ return ~ uri", uri);
     const response = await fetchFunction(uri, options);
+    console.log("🚀 ~ file: App.jsx ~ line 81 ~ return ~ response", response);
 
     if (
       response.headers.get("X-Shopify-API-Request-Failure-Reauthorize") === "1"
