@@ -25,13 +25,21 @@ const PRODUCTS_QUERY = gql`
 export function ProductsCard() {
   const [populateProduct, { loading }] = useMutation(PRODUCTS_QUERY);
   const [productCount, setProductCount] = useState(0);
+  console.log(
+    "🚀 ~ file: ProductsCard.jsx ~ line 28 ~ ProductsCard ~ productCount",
+    productCount
+  );
   const [hasResults, setHasResults] = useState(false);
 
   const app = useAppBridge();
   const fetch = userLoggedInFetch(app);
   const updateProductCount = useCallback(async () => {
-    const { count } = await fetch("/products-count").then((res) => res.json());
-    setProductCount(count);
+    const res = await fetch("/products-count").then((res) => res.json());
+    console.log(
+      "🚀 ~ file: ProductsCard.jsx ~ line 34 ~ updateProductCount ~ res",
+      res
+    );
+    setProductCount(res);
   }, []);
 
   useEffect(() => {

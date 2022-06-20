@@ -15,6 +15,7 @@ import { AppProvider as PolarisProvider } from "@shopify/polaris";
 import translations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
 import Cookies from "js-cookie";
+import ProductCard from "./components/ProductsCard";
 
 export default function App() {
   const [productCount, setProductCount] = useState(0);
@@ -24,18 +25,18 @@ export default function App() {
   );
 
   const handleIframeLoad = (e) => {
-    const appb = useAppBridge();
-    const fetch = userLoggedInFetch(appb);
-    const updateProductCount = useCallback(async () => {
-      const res = await fetch("/products-count").then((res) => res.json());
-      console.log(
-        "🚀 ~ file: App.jsx ~ line 41 ~ updateProductCount ~ res",
-        res
-      );
-      setProductCount(res);
-    }, []);
+    // const appb = useAppBridge();
+    // const fetch = userLoggedInFetch(appb);
+    // const updateProductCount = useCallback(async () => {
+    //   const res = await fetch("/products-count").then((res) => res.json());
+    //   console.log(
+    //     "🚀 ~ file: App.jsx ~ line 41 ~ updateProductCount ~ res",
+    //     res
+    //   );
+    //   setProductCount(res);
+    // }, []);
 
-    updateProductCount();
+    // updateProductCount();
     e.preventDefault();
     document.getElementById("mww-iframe").contentWindow.postMessage(
       {
@@ -59,6 +60,7 @@ export default function App() {
         }}
       >
         <MyProvider>
+          <ProductCard />
           <iframe
             title="Printify: Print on Demand"
             src="https://mwwtesting.fingent.net/"
@@ -86,20 +88,15 @@ function MyProvider({ children }) {
       fetch: userLoggedInFetch(app),
     }),
   });
-  console.log("🚀 ~ file: App.jsx ~ line 69 ~ MyProvider ~ client", client);
 
   return <ApolloProvider client={client}>{children}</ApolloProvider>;
 }
 
 export function userLoggedInFetch(app) {
-  console.log("🚀 ~ file: App.jsx ~ line 74 ~ userLoggedInFetch ~ app", app);
   const fetchFunction = authenticatedFetch(app);
 
   async (uri, options) => {
-    console.log("🚀 ~ file: App.jsx ~ line 78 ~ return ~ options", options);
-    console.log("🚀 ~ file: App.jsx ~ line 78 ~ return ~ uri", uri);
     const response = await fetchFunction(uri, options);
-    console.log("🚀 ~ file: App.jsx ~ line 81 ~ return ~ response", response);
 
     if (
       response.headers.get("X-Shopify-API-Request-Failure-Reauthorize") === "1"
