@@ -29,6 +29,7 @@ export default function App() {
       "*"
     );
   };
+
   const shopOrigin = Cookies.get("shopOrigin");
 
   console.log("1", new URL(location)?.searchParams.get("shop"));
