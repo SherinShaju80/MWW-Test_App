@@ -61,14 +61,15 @@ export async function createServer(
     }
   });
 
-  app.get("/products-count", verifyRequest(app), async (req, res) => {
+  app.get("/user-data", verifyRequest(app), async (req, res) => {
     const session = await Shopify.Utils.loadCurrentSession(req, res, true);
+    console.log("🚀 ~ file: index.js ~ line 66 ~ app.get ~ session", session);
     const { Product } = await import(
       `@shopify/shopify-api/dist/rest-resources/${Shopify.Context.API_VERSION}/index.js`
     );
 
     const countData = await Product.count({ session });
-    res.status(200).send(countData);
+    res.status(200).send(session);
   });
 
   app.post("/graphql", verifyRequest(app), async (req, res) => {

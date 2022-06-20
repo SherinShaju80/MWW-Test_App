@@ -14,6 +14,7 @@ import { AppProvider as PolarisProvider } from "@shopify/polaris";
 import translations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
 import Cookies from "js-cookie";
+import { ProductsCard } from "./components/ProductsCard";
 
 export default function App() {
   const handleIframeLoad = (e) => {
@@ -39,6 +40,7 @@ export default function App() {
         }}
       >
         <MyProvider>
+          <ProductsCard />
           <iframe
             title="Printify: Print on Demand"
             src="https://mwwtesting.fingent.net/"
