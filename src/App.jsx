@@ -41,7 +41,7 @@ export default function App() {
         <MyProvider>
           <iframe
             title="Printify: Print on Demand"
-            src="https://mwwtesting.fingent.net/"
+            src="https://mwwdev.fingent.net/"
             name="mww-shop"
             context="Main"
             width="100%"
