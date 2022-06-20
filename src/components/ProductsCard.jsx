@@ -24,27 +24,25 @@ const PRODUCTS_QUERY = gql`
 
 export function ProductsCard() {
   const [populateProduct, { loading }] = useMutation(PRODUCTS_QUERY);
-  const [productCount, setProductCount] = useState(0);
-  console.log(
-    "🚀 ~ file: ProductsCard.jsx ~ line 28 ~ ProductsCard ~ productCount",
-    productCount
-  );
+  const [productCount, setProductCount] = useState([]);
+
   const [hasResults, setHasResults] = useState(false);
 
   const app = useAppBridge();
   const fetch = userLoggedInFetch(app);
   const updateProductCount = useCallback(async () => {
     const res = await fetch("/products-count").then((res) => res.json());
-    console.log(
-      "🚀 ~ file: ProductsCard.jsx ~ line 34 ~ updateProductCount ~ res",
-      res
-    );
     setProductCount(res);
   }, []);
 
   useEffect(() => {
     updateProductCount();
   }, [updateProductCount]);
+
+  console.log(
+    "🚀 ~ file: ProductsCard.jsx ~ line 28 ~ ProductsCard ~ productCount",
+    productCount
+  );
 
   const toastMarkup = hasResults && (
     <Toast

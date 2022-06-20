@@ -70,7 +70,7 @@ export async function createServer(
     );
     const tokenAccess = app.get("oauth-access-token");
     const countData = await Product.count({ session });
-    res.status(200).send(tokenAccess);
+    res.status(200).send({ count: "1223433343" });
   });
 
   // app.get("/access-token", verifyRequest(app), async (req, res) => {
