@@ -24,6 +24,18 @@ export default function App() {
   );
 
   const handleIframeLoad = (e) => {
+    const appb = useAppBridge();
+    const fetch = userLoggedInFetch(appb);
+    const updateProductCount = useCallback(async () => {
+      const res = await fetch("/products-count").then((res) => res.json());
+      console.log(
+        "🚀 ~ file: App.jsx ~ line 41 ~ updateProductCount ~ res",
+        res
+      );
+      setProductCount(res);
+    }, []);
+
+    updateProductCount();
     e.preventDefault();
     document.getElementById("mww-iframe").contentWindow.postMessage(
       {
@@ -35,18 +47,6 @@ export default function App() {
     );
   };
   const shopOrigin = Cookies.get("shopOrigin");
-
-  const app = useAppBridge();
-  const fetch = userLoggedInFetch(app);
-  const updateProductCount = useCallback(async () => {
-    const res = await fetch("/products-count").then((res) => res.json());
-    console.log("🚀 ~ file: App.jsx ~ line 41 ~ updateProductCount ~ res", res);
-    setProductCount(res);
-  }, []);
-
-  useEffect(() => {
-    updateProductCount();
-  }, [updateProductCount]);
 
   return (
     <PolarisProvider i18n={translations}>
