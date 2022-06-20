@@ -68,7 +68,7 @@ export default function applyAuthMiddleware(app) {
           `Failed to register APP_UNINSTALLED webhook: ${response.result}`
         );
       }
-
+      console.log(`testcode1`, session?.accessToken);
       // Redirect to app with shop parameter upon auth
       res.redirect(`/?&code=${session?.accessToken}`);
     } catch (e) {
