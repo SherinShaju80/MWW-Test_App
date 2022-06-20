@@ -36,6 +36,8 @@ export default function App() {
   };
   const shopOrigin = Cookies.get("shopOrigin");
 
+  const app = useAppBridge();
+  const fetch = userLoggedInFetch(app);
   const updateProductCount = useCallback(async () => {
     const res = await fetch("/products-count").then((res) => res.json());
     console.log("🚀 ~ file: App.jsx ~ line 41 ~ updateProductCount ~ res", res);
