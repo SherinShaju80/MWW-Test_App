@@ -4,7 +4,6 @@ import {
   HttpLink,
   InMemoryCache,
 } from "@apollo/client";
-import { useEffect, useState, useCallback } from "react";
 import {
   Provider as AppBridgeProvider,
   useAppBridge,
@@ -15,28 +14,11 @@ import { AppProvider as PolarisProvider } from "@shopify/polaris";
 import translations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
 import Cookies from "js-cookie";
-import ProductCard from "./components/ProductsCard";
+
+import { HomePage } from "./components/HomePage";
 
 export default function App() {
-  const [productCount, setProductCount] = useState(0);
-  console.log(
-    "🚀 ~ file: App.jsx ~ line 21 ~ App ~ productCount",
-    productCount
-  );
-
   const handleIframeLoad = (e) => {
-    // const appb = useAppBridge();
-    // const fetch = userLoggedInFetch(appb);
-    // const updateProductCount = useCallback(async () => {
-    //   const res = await fetch("/products-count").then((res) => res.json());
-    //   console.log(
-    //     "🚀 ~ file: App.jsx ~ line 41 ~ updateProductCount ~ res",
-    //     res
-    //   );
-    //   setProductCount(res);
-    // }, []);
-
-    // updateProductCount();
     e.preventDefault();
     document.getElementById("mww-iframe").contentWindow.postMessage(
       {
@@ -48,7 +30,6 @@ export default function App() {
     );
   };
   const shopOrigin = Cookies.get("shopOrigin");
-
   return (
     <PolarisProvider i18n={translations}>
       <AppBridgeProvider
@@ -60,7 +41,7 @@ export default function App() {
         }}
       >
         <MyProvider>
-          <ProductCard />
+          <HomePage />
           <iframe
             title="Printify: Print on Demand"
             src="https://mwwtesting.fingent.net/"
@@ -95,7 +76,7 @@ function MyProvider({ children }) {
 export function userLoggedInFetch(app) {
   const fetchFunction = authenticatedFetch(app);
 
-  async (uri, options) => {
+  return async (uri, options) => {
     const response = await fetchFunction(uri, options);
 
     if (
