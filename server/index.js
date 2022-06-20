@@ -68,9 +68,9 @@ export async function createServer(
     const { Product } = await import(
       `@shopify/shopify-api/dist/rest-resources/${Shopify.Context.API_VERSION}/index.js`
     );
-    const tokenAccess = app.get("oauth-access-token");
+
     const countData = await Product.count({ session });
-    res.status(200).send({ count: "1223433343" });
+    res.status(200).send(countData);
   });
 
   // app.get("/access-token", verifyRequest(app), async (req, res) => {
