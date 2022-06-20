@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {
   ApolloClient,
   ApolloProvider,
@@ -29,9 +28,6 @@ export default function App() {
     );
   };
   const shopOrigin = Cookies.get("shopOrigin");
-  useEffect(() => {
-    console.log("ss", new URL(location)?.searchParams.get("code"));
-  }, [location]);
   return (
     <PolarisProvider i18n={translations}>
       <AppBridgeProvider
