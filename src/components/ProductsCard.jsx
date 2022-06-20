@@ -31,18 +31,13 @@ export function ProductsCard() {
   const app = useAppBridge();
   const fetch = userLoggedInFetch(app);
   const updateProductCount = useCallback(async () => {
-    const res = await fetch("/user-data").then((res) => res.json());
-    setProductCount(res);
+    const { data } = await fetch("/user-data").then((res) => res.json());
+    setProductCount(data);
   }, []);
 
   useEffect(() => {
     updateProductCount();
   }, [updateProductCount]);
-
-  console.log(
-    "🚀 ~ file: ProductsCard.jsx ~ line 28 ~ ProductsCard ~ productCount",
-    productCount
-  );
 
   const toastMarkup = hasResults && (
     <Toast

@@ -69,7 +69,7 @@ export async function createServer(
     );
 
     const countData = await Product.count({ session });
-    res.status(200).send(session);
+    res.status(200).send({ data: session });
   });
 
   app.post("/graphql", verifyRequest(app), async (req, res) => {
