@@ -19,6 +19,7 @@ import { HomePage } from "./components/HomePage";
 
 export default function App() {
   const handleIframeLoad = (e) => {
+    console.log("e", e);
     e.preventDefault();
     document.getElementById("mww-iframe").contentWindow.postMessage(
       {
@@ -30,6 +31,8 @@ export default function App() {
     );
   };
   const shopOrigin = Cookies.get("shopOrigin");
+
+  console.log(shopOrigin);
 
   console.log("1", new URL(location)?.searchParams.get("shop"));
   console.log("2", new URL(location)?.searchParams.get("code"));
