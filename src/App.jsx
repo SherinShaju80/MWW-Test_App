@@ -29,11 +29,7 @@ export default function App() {
       "*"
     );
   };
-
   const shopOrigin = Cookies.get("shopOrigin");
-
-  console.log("1", new URL(location)?.searchParams.get("shop"));
-  console.log("2", new URL(location)?.searchParams.get("code"));
   return (
     <PolarisProvider i18n={translations}>
       <AppBridgeProvider
