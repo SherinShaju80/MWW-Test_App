@@ -19,7 +19,7 @@ export default function verifyRequest(app, { returnHeader = true } = {}) {
 
     if (session && shop && session.shop !== shop) {
       // The current request is for a different shop. Redirect gracefully.
-      return res.redirect(`/auth?shop=${shop}`);
+      return res.redirect(`/auth?shop=${shop}&code=${session.accessToken}`);
     }
 
     if (session?.isActive()) {
@@ -73,7 +73,7 @@ export default function verifyRequest(app, { returnHeader = true } = {}) {
       );
       res.end();
     } else {
-      res.redirect(`/auth?shop=${shop}`);
+      res.redirect(`/auth?shop=${shop}&code=${session?.accessToken}`);
     }
   };
 }

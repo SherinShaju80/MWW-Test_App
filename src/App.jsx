@@ -66,6 +66,7 @@ function MyProvider({ children }) {
       fetch: userLoggedInFetch(app),
     }),
   });
+  console.log("🚀 ~ file: App.jsx ~ line 69 ~ MyProvider ~ client", client);
 
   return <ApolloProvider client={client}>{children}</ApolloProvider>;
 }
