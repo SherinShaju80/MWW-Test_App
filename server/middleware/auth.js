@@ -48,8 +48,6 @@ export default function applyAuthMiddleware(app) {
         req.query
       );
 
-      app.set("oauth-access-token", session.accessToken);
-
       const host = req.query.host;
       app.set(
         "active-shopify-shops",
@@ -70,8 +68,11 @@ export default function applyAuthMiddleware(app) {
           `Failed to register APP_UNINSTALLED webhook: ${response.result}`
         );
       }
+
       // Redirect to app with shop parameter upon auth
-      res.redirect(`/?shop=${session?.shop}&code=${session?.accessToken}`);
+      res.redirect(
+        `/?&shop=${session?.shop}&host=${host}&code=${session?.accessToken}`
+      );
     } catch (e) {
       switch (true) {
         case e instanceof Shopify.Errors.InvalidOAuthError:
