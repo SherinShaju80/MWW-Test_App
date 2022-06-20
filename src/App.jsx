@@ -22,7 +22,7 @@ export default function App() {
       {
         type: "mww-iframe-data",
         shop: new URL(location).searchParams.get("shop"),
-        session: new URL(location)?.searchParams.get("codes"),
+        session: new URL(location)?.searchParams.get("code"),
       },
       "*"
     );
@@ -31,7 +31,7 @@ export default function App() {
 
   console.log("location", window);
 
-  console.log("test2 ", new URL(location)?.searchParams.get("codes"));
+  console.log("test2 ", new URL(location)?.searchParams.get("code"));
   return (
     <PolarisProvider i18n={translations}>
       <AppBridgeProvider
