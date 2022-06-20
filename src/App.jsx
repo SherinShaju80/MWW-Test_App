@@ -75,7 +75,7 @@ export function userLoggedInFetch(app) {
   console.log("🚀 ~ file: App.jsx ~ line 74 ~ userLoggedInFetch ~ app", app);
   const fetchFunction = authenticatedFetch(app);
 
-  return async (uri, options) => {
+  async (uri, options) => {
     console.log("🚀 ~ file: App.jsx ~ line 78 ~ return ~ options", options);
     console.log("🚀 ~ file: App.jsx ~ line 78 ~ return ~ uri", uri);
     const response = await fetchFunction(uri, options);
