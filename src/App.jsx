@@ -15,9 +15,10 @@ import translations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
 import Cookies from "js-cookie";
 
+import { HomePage } from "./components/HomePage";
+
 export default function App() {
   const handleIframeLoad = (e) => {
-    console.log("e", e);
     e.preventDefault();
     document.getElementById("mww-iframe").contentWindow.postMessage(
       {
@@ -28,6 +29,7 @@ export default function App() {
       "*"
     );
   };
+  const shopOrigin = Cookies.get("shopOrigin");
 
   console.log("1", new URL(location)?.searchParams.get("shop"));
   console.log("2", new URL(location)?.searchParams.get("code"));
