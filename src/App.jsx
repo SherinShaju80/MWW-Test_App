@@ -15,8 +15,6 @@ import translations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
 import Cookies from "js-cookie";
 
-import { HomePage } from "./components/HomePage";
-
 export default function App() {
   const handleIframeLoad = (e) => {
     e.preventDefault();
