@@ -15,6 +15,8 @@ import translations from "@shopify/polaris/locales/en.json";
 import "@shopify/polaris/build/esm/styles.css";
 import Cookies from "js-cookie";
 
+import { HomePage } from "./components/HomePage";
+
 export default function App() {
   const handleIframeLoad = (e) => {
     e.preventDefault();
@@ -29,9 +31,9 @@ export default function App() {
   };
   const shopOrigin = Cookies.get("shopOrigin");
 
-  console.log("location", window);
-
-  console.log("test2 ", new URL(location)?.searchParams.get("code"));
+  console.log("1", new URL(location)?.searchParams.get("shop"));
+  console.log("2", new URL(location)?.searchParams.get("code"));
+  console.log("3", new URL(location)?.searchParams.get("hmmae"));
   return (
     <PolarisProvider i18n={translations}>
       <AppBridgeProvider
