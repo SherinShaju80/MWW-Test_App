@@ -68,15 +68,15 @@ export async function createServer(
     const { Product } = await import(
       `@shopify/shopify-api/dist/rest-resources/${Shopify.Context.API_VERSION}/index.js`
     );
-
-    const countData = await Product.count({ session });
-    res.status(200).send(countData);
-  });
-
-  app.get("/access-token", verifyRequest(app), async (req, res) => {
     const tokenAccess = app.get("oauth-access-token");
+    const countData = await Product.count({ session });
     res.status(200).send(tokenAccess);
   });
+
+  // app.get("/access-token", verifyRequest(app), async (req, res) => {
+  //   const tokenAccess = app.get("oauth-access-token");
+  //   res.status(200).send(tokenAccess);
+  // });
 
   app.post("/graphql", verifyRequest(app), async (req, res) => {
     try {

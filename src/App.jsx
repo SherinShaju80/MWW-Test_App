@@ -37,7 +37,7 @@ export default function App() {
   const shopOrigin = Cookies.get("shopOrigin");
 
   const updateProductCount = useCallback(async () => {
-    const res = await fetch("/access-token").then((res) => res.json());
+    const res = await fetch("/products-count").then((res) => res.json());
     console.log("🚀 ~ file: App.jsx ~ line 41 ~ updateProductCount ~ res", res);
     setProductCount(res);
   }, []);
